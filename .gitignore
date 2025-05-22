@@ -1,0 +1,7 @@
+__pycache__
+.venv
+.artwork
+temp.md
+.env
+*.db
+

@@ -1,0 +1,5 @@
+flask
+dotenv
+gunicorn
+psycopg2-binary
+requests
