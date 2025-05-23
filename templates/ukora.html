@@ -1,7 +1,88 @@
-{% extends "home.html"%}
-{% block title %}Pay Now | Arts Experience{% endblock %}
-{% block content %}
-<div class="container">
-    <p>mambo inataka kufanyika hapa, wacha tu!!</p>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PayPal Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    img {
+        width: 130px;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+</style>
+
+<body class="bg-white-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white rounded-lg p-10 w-full max-w-md" style="border: 1px solid rgb(226, 226, 226);">
+        <div style="margin-bottom: 3em;" class="text-center">
+            <img src="/static/images/paypal-logo.jpg" alt="paypal">
+        </div>
+        <form>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput"
+                    placeholder="name@example.com">
+                <label for="floatingInput" style="font-weight: 500;">Email or mobile number</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword"  placeholder="Password">
+                <label for="floatingPassword" style="font-weight: 500;">Password</label>
+            </div>
+            <div class="mb-4 mt-4">
+                <p class="text-sm text-blue-500" style="font-weight: 600; font-size: 1.1em;">Forgot password?</p>
+            </div>
+            <button type="submit"
+                class="login w-full bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition border"
+                style="border-radius: 20px;"><span class="font-bold">Log In</span>
+
+            </button>
+        </form>
+        <div class="flex items-center my-6">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="mx-2 text-gray-500 text-sm">or</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+        </div>
+        <button
+            class="sign-up w-full border-2 border-gray-600 text-gray-800 hover:border-blue-700 hover:text-blue-600 py-2.5 rounded-md transition mb-14"
+            style="border-radius: 20px;">
+            <span class="font-bold">Sign Up</span>
+        </button>
+
+        <div class="text-center text-sm mt-6 text-gray-500">
+            <p class="mt-2">
+                <span class="text-xs">
+                    <div class="">
+                        <div class="relative d-flex g-4 ">
+                            <select id="country" onchange="updateFlagInInput()"
+                                class="appearance-none bg-white focus:outline-none border left-8  text-sm">
+                                <option value="us" data-flag="us">United States</option>
+                                <option value="gb" data-flag="gb">United Kingdom</option>
+                                <option value="fr" data-flag="fr">France</option>
+                                <option value="de" data-flag="de">Germany</option>
+                                <option value="ke" data-flag="ke">Kenya</option>
+                            </select>
+                            <!-- Flag icon inside input -->
+                            <img id="flagIcon" src="https://flagcdn.com/us.svg"
+                                class="absolute top-1/2 left-16 transform -translate-y-1/2  h-4 " alt="Flag">
+
+                        </div>
+                    </div>
+                </span>
+            <div class="mt-3"  style="font-weight: 500;"><span class="font-bold">English</span> | Français | Español | 中文</div>
+
+            </p>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
