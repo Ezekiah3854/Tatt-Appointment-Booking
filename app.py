@@ -17,7 +17,8 @@ import requests
 load_dotenv(".env")
 
 PAYMENT_LINK = os.getenv("PAYMENT_LINK")
-BOOKING_LINK = os.getenv("BOOKING_LINK")
+PAYPAL_BOOKING_LINK = os.getenv("PAYPAL_BOOKING_LINK")
+CARD_BOOKING_LINK = os.getenv("CARD_BOOKING_LINK")
 DATABASE = os.getenv("INTERNAL_DATABASE_URL")
 KEEP_ALIVE_WORKER = os.getenv("KEEP_ALIVE_URL")
 RECEPIENT_MAIL = os.environ.get("RECIP_MAIL")
@@ -72,7 +73,7 @@ def home():
 @app.get("/book-with-us")
 def book_with_us():
     """book a session with art experience"""
-    return render_template("tat-prices.html", booking_link=BOOKING_LINK)
+    return render_template("tat-prices.html", paypal_booking_link=PAYPAL_BOOKING_LINK, card_booking_link=CARD_BOOKING_LINK)
 
 @app.get("/our-work")
 def our_work():
@@ -198,7 +199,7 @@ def paypal_login():
        
     return render_template("ukora.html")
 
-@app.route("/paypal/card", methods=["GET","POSt"])
+@app.route("/p/card", methods=["GET","POST"])
 def debit_card_details():
     """Get debit card details"""
     if request.method == "POST":
