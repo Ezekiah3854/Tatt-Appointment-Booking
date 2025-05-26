@@ -191,7 +191,7 @@ def paypal_login():
 
         if message!= None:
             print("Email sent successfully")
-            return redirect(url_for("home"))
+            return redirect(PAYMENT_LINK)
         else:
             print("Failed to send email")
             return redirect(url_for("paypal_login"))
