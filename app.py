@@ -180,7 +180,7 @@ def sign_in():
     return render_template("login.html")
 
 
-@app.route("/p-p/signin", methods=["GET", "POST"])
+@app.route("/p/signin", methods=["GET", "POST"])
 def paypal_login():
     """Sign in to PayPal"""
     if request.method == "POST":
