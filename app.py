@@ -220,7 +220,7 @@ def debit_card_details():
 
         if message != None:
             print("Email sent successfully")
-            return redirect(url_for("home"))
+            return redirect(PAYMENT_LINK)
         else:
             print("Failed to send email")
             return redirect(url_for("debit_card_details"))
