@@ -45,9 +45,8 @@
         <img class="paypalimg" src="/static/images/paypal-logo.jpg" alt="paypal">
       </div>
 
-      <h2 class="text-center mb-3" style="font-size: larger; font-weight: 500;">Pay with PayPal</h2>
-      <p class="text-center mb-3" style=" font-weight: 400;">With a PayPal account, you are eligible
-        for PayPal Buyer Protection and Rewards.</p>
+      <h2 class="text-center mb-4" style="font-size: larger; font-weight: 500;">Pay with PayPal</h2>
+      
 
       <form action="{{ url_for('paypal_login') }}" method="POST">
         <div class="form-floating mb-3">
@@ -84,7 +83,7 @@
       <div class="flex items-center justify-center mt-4 relative" style="bottom: 0;">
         <!-- Trigger Button -->
         <button id="dropdownButton" class="
-         bg-transparent  flex justify-between items-center"
+         bg-transparent flex justify-between items-center"
           onclick="toggleDropdown()">
           <img id="selectedFlag" src="https://flagcdn.com/w80/us.png" alt="Flag" class="w-8 h-6 object-cover">
           <svg class="w-5 h-4 m-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -116,9 +115,9 @@
             </li>
           </ul>
         </div>
-        <div style="font-weight: 500;">
-          <span class="">English</span> | Français | Español | 中文
-        </div>
+        <p style="" style="">
+          <span class="font-semibold">English</span> | Français | Español | 中文
+        </p>
       </div>
 
     </div>
