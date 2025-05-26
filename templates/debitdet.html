@@ -15,16 +15,6 @@
             overflow-x: hidden;
         }
 
-        input[type='number']::-webkit-outer-spin-button,
-        input[type='number']::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type='number'] {
-            -moz-appearance: textfield;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -34,7 +24,7 @@
 
 </head>
 
-<body class="bg-white px-2">
+<body class="bg-white px-2 text-base">
     <div class="w-full space-y-6">
         <h2 class="text-center text-gray-700 font-medium mt-5">Pay with Card</h2>
 
@@ -49,7 +39,7 @@
         </button>
 
         <!-- Card Input Section -->
-        <div class="space-y-4 border rounded-md p-4 relative">
+        <div class="max-w-xl mx-auto p-4 border rounded relative">
             <!-- Close Icon -->
             <button class="absolute top-2 right-5 text-xl font-semibold text-gray-500 hover:text-gray-800 px-1"
                 style="font-size: 2em;">&times;</button>
