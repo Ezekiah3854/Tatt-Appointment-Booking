@@ -27,7 +27,7 @@
     <div class="price-container rounded shadow p-4 mb-4 d-flex justify-content-between align-items-center">
         <div class="fl">
             <h6>Tapout Session</h6>
-            <p>6hrs  @ $600.00</p>
+            <p>6hrs @ $600.00</p>
         </div>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book</button>
     </div>
@@ -125,21 +125,42 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Payment Option</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p class="font-semibold">Select how you'll like to pay for your tattoo appointment. You can either pay with PayPal or Debit/Credit Card.</p>
-      </div>
-      <div class="modal-footer">
-        <a href="{{ paypal_booking_link }}"><button type="button" class="btn btn-primary">Pay with PayPal</button></a>
-        <a href="{{ card_booking_link}}"><button type="button" class="btn btn-primary">Pay with Debit or Credit Card</button></a>
-      </div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Payment Option</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="font-semibold">Select how you'll like to pay for your tattoo appointment. You can either pay
+                    with PayPal or Debit/Credit Card.</p>
+                <div class="gap-2 mt-4 d-flex flex-column">
+                    <!-- Card Payment Button -->
+                    <div class="d-grid mb-1">
+                        <a href="{{ paypal_booking_link }}" style="text-decoration: none;"><button class="btn d-flex justify-content-center align-items-center w-100 py-3"
+                            style="background-color: #ffc439; color: rgb(69, 168, 226); font-weight: bold; border: none; font-size: x-large; ">
+                            <i><span style="color: rgb(8, 8, 151);">Pay</span>Pal</i>
+                        </button></a>
+                    </div>
+                    <div class="d-flex align-items-center my-1">
+                        <hr class="flex-grow-1 border-top border-secondary" />
+                        <span class="mx-2 text-muted small">or pay with card</span>
+                        <hr class="flex-grow-1 border-top border-secondary" />
+                    </div>
+
+                    <!-- Card Payment Button -->
+                    <div class="d-grid mb-4">
+                        <a href="{{ card_booking_link }}" style="text-decoration: none;"><button class="btn btn-dark d-flex justify-content-center align-items-center gap-2 w-100 py-3"  style="font-size: larger;">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAABAUlEQVR4nO2XTWoCQRCF21xBc5LcwHiGBPeJHsGlLlx4q1zivVFm4VSDLsZLVGhxVPyZIIPdQ6gPalfQr7+moco5wzCMuOR5/roGxh6YRK7RdrXq1Ybz5ECAnZCapLA/+/2uuaTheAp502RQXDV58kNVOy4SqtpZk5/HkFn2ddUkwLRqiBmuQlVfzixO3SUFOasaXCLkcH7I8mdAv1y+hU8Ts+SRgEL+pPooxb8I6Nv+xCkQC9gQM9gUM9gUM9gUM/hUg60fWP3ZyB/G79gjfwEMa0f+sKi0Ymkiy02WdW/eJKx8iUOWAvRrdR9MfgswL8hFjBJgHp71rjnDMAz3NH4BT9/OufAqG6QAAAAASUVORK5CYII=" alt="bank-card-back-side--v1">
+                            Debit or Credit Card
+                        </button></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
 {% endblock %}
