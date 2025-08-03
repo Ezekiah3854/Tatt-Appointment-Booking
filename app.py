@@ -67,7 +67,7 @@ def connect_db():
 @app.get("/")
 def home():
     """home page"""
-    return render_template("suspended.html")
+    return render_template("home.html")
 
 
 @app.get("/book-with-us")
